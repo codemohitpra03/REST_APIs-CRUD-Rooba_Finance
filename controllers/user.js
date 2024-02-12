@@ -54,7 +54,12 @@ async function handleUpdateUser(req, res) {
         }
         
         if (name) user.name = name;
-        if (email) user.email = email;
+        if (email){
+            if(!emailRegex.test(email)){
+                return res.status(400).json({ message: "Email Not Valid" });
+            }
+            user.email = email;   
+        }
         if (age) user.age = age;
         if (country) user.country = country;
 
