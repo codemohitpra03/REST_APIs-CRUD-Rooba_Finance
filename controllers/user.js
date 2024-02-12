@@ -21,7 +21,7 @@ async function handleCreateUser(req, res) {
         return res.status(400).json({ message: "Email Not Valid" });
     }
 
-    const existingUser = await UserModel.findOne({ _id: userId });
+    const existingUser = await User.findOne({ email });
 
     if (existingUser) {
         return res.status(400).json({
