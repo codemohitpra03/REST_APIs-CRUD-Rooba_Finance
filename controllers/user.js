@@ -15,10 +15,19 @@ async function handleCreateUser(req, res) {
     if (!name || !email || !age || !country || !password) {
         return res.status(400).json({ message: "Missing required parameters. Please check all fields" });
     }
+
+
     if(!emailRegex.test(email)){
         return res.status(400).json({ message: "Email Not Valid" });
     }
 
+    const existingUser = await UserModel.findOne({ _id: userId });
+
+    if (existingUser) {
+        return res.status(400).json({
+            message: "User already exists"
+        });
+    }
     try {
         const user = new User({
             name,
