@@ -75,6 +75,9 @@ Start the server
   npm run start
 ```
 
+## Live URL
+https://crud-operations-rest-rooba-finance.onrender.com
+
 
 ## Tech Stack
 
