@@ -12,6 +12,9 @@ async function handleGetUsers(req, res) {
 }
 async function handleCreateUser(req, res) {
     const {name,email,age,country,password} = req.body
+    if (!name || !email || !age || !country || !password) {
+        return res.status(400).json({ message: "Missing required parameters. Please check all fields" });
+    }
     if(!emailRegex.test(email)){
         return res.status(400).json({ message: "Email Not Valid" });
     }
